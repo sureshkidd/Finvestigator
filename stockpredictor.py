@@ -8,6 +8,12 @@ from streamlit_option_menu import option_menu
 import feedparser
 import matplotlib.pyplot as plt
 
+# AdSense script
+adsense_script = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2656334449772852"
+     crossorigin="anonymous"></script>
+"""
+
 # Top ribbon with logo and title
 st.markdown("""
 <div style="background-color:#0074D9;padding:3px;border-radius:10px">
