@@ -4,13 +4,14 @@ import yfinance as yf
 from prophet import Prophet
 from prophet.plot import plot_plotly
 from plotly import graph_objs as go
+from streamlit_option_menu import option_menu
 import feedparser
 import matplotlib.pyplot as plt
 
 # Top ribbon with logo and title
 st.markdown("""
 <div style="background-color:#0074D9;padding:3px;border-radius:10px">
-<h1 style="color:white;text-align:center;">Stock Forecast</h1>
+<h1 style="color:white;text-align:center;">📈 Stock Forecast</h1>
 </div>
 """, unsafe_allow_html=True)
 # Display logo
@@ -20,12 +21,42 @@ st.sidebar.image('finvestigator-logo.png', width=250)  # Replace with your logo 
 menu_options = {
     "Home": "🏠",
     "Latest Market News": "📰",
-    "Disclaimer": "⚠️"
+    "Disclaimer": "⚠️",
 }
 
-# Display the option menu with a title "Navigation" and increased font size
-selected_page = st.sidebar.selectbox("  **Main Menu**  ", list(menu_options.keys()), format_func=lambda option: f"{menu_options[option]} {option}")
+def streamlit_menu():
+    with st.sidebar:
+        st.sidebar.markdown("---")
+        selected = option_menu(
+            menu_title="Main Menu",  # required
+            options=['Home','Latest Market News','Disclaimer'],  # required
+            icons=['house','newspaper','exclamation-diamond-fill'],  # optional
+            menu_icon="cast",  # optional
+            default_index=0,  # optional
+            orientation="vertical",
+            styles={"menu": {"font-size": "20px"}},
+        )
+    return selected
 
+@st.cache_resource
+def load_data(ticker_symbol, start, end):
+    try:
+        data = yf.download(ticker_symbol, start, end)
+        if data.empty:
+            st.error("No data available for the specified company within the specified date range.")
+            st.stop()
+        return data
+    except Exception as e:
+        st.error(f"Error occurred while loading data: {e}")
+
+@st.cache_resource
+def train_prophet_model(data):
+    df_train = data[["Close"]].reset_index()
+    df_train = df_train.rename(columns={"Date": "ds", "Close": "y"})
+    m = Prophet()
+    m.fit(df_train)
+    return m
+selected_page = streamlit_menu()
 
 if selected_page == "Home":
     # Home page content
