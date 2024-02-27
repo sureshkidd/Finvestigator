@@ -8,6 +8,7 @@ from streamlit_option_menu import option_menu
 import feedparser
 import matplotlib.pyplot as plt
 
+
 # Top ribbon with logo and title
 st.markdown("""
 <div style="background-color:#0074D9;padding:3px;border-radius:10px">
@@ -186,22 +187,11 @@ def main():
     # Write your Streamlit UI code here
     st.title("My Streamlit Web App")
 
-    # Embedding the Google AdSense HTML code
+    # Embedding the Adsterra HTML code
     st.write("""
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2656334449772852"
-     crossorigin="anonymous"></script>
-    <!-- Your AdSense Ad Slot Code -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2656334449772852"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <script async="async" data-cfasync="false" src="//pl22630564.profitablegatecpm.com/05c86df6399a5276df86746539d544c8/invoke.js"></script>
+    <div id="container-05c86df6399a5276df86746539d544c8"></div>
     """)
-
 if __name__ == "__main__":
     main()
-
 
