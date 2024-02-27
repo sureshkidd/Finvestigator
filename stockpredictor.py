@@ -184,13 +184,24 @@ elif selected_page == "Disclaimer":
     """, unsafe_allow_html=True)
 def main():
     # Write your Streamlit UI code here
- #st.title("My Streamlit Web App")
+    st.title("My Streamlit Web App")
 
-    # Embedding the HTML and JavaScript code
- st.write("""
+    # Embedding the Google AdSense HTML code
+    st.write("""
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2656334449772852"
      crossorigin="anonymous"></script>
+    <!-- Your AdSense Ad Slot Code -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-2656334449772852"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
     """)
 
 if __name__ == "__main__":
     main()
+
+
