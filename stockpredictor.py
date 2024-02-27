@@ -8,12 +8,6 @@ from streamlit_option_menu import option_menu
 import feedparser
 import matplotlib.pyplot as plt
 
-# AdSense script
-adsense_script = """
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2656334449772852"
-     crossorigin="anonymous"></script>
-"""
-
 # Top ribbon with logo and title
 st.markdown("""
 <div style="background-color:#0074D9;padding:3px;border-radius:10px">
@@ -188,3 +182,15 @@ elif selected_page == "Disclaimer":
             </p>
         </div>
     """, unsafe_allow_html=True)
+def main():
+    # Write your Streamlit UI code here
+ #st.title("My Streamlit Web App")
+
+    # Embedding the HTML and JavaScript code
+ st.write("""
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2656334449772852"
+     crossorigin="anonymous"></script>
+    """)
+
+if __name__ == "__main__":
+    main()
